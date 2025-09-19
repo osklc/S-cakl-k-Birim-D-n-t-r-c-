@@ -19,7 +19,7 @@ int parse_unit(const char *line, char *out_unit) {
 
 int read_unit(char *out_unit) {
     char line[128];
-    if (!fgets(line, sizeof line, stdin)) return 0; // EOF veya hata
+    if (!fgets(line, sizeof line, stdin)) return 0; // Hata koruması
     int r = parse_unit(line, out_unit);
     if (r == 1) return 1;
     if (r == 0) {
@@ -37,7 +37,7 @@ int read_double(const char *prompt, double *out) {
         if (!fgets(buf, sizeof buf, stdin)) return 0;
         char extra;
         double val;
-        // " %lf %c" ile ekstra karakter kontrolü yapıyoruz: eger ekstra varsa sscanf 2 döner.
+        // Ekstra karakter kontrolü yapıyoruz eğer ekstra varsa sscanf 2 döner.
         if (sscanf(buf, " %lf %c", &val, &extra) == 1) {
             *out = val;
             return 1;
